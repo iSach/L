@@ -1,0 +1,15 @@
+{
+  "name": "Permissions",
+  "description": "Helps direct the user the permission list",
+  "response": "Hi {author}! You can find permissions at https://bit.ly/PermsUC !",
+  "words": {
+    "perm": {
+      "weight": 3
+    },
+    "list": {
+      "weight": 1
+    }
+  },
+  "requiredweight": 4,
+  "inherit": [ "HelpWords" ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Help Words",
+  "description": "Sees if the user needs help or information",
+  "response": "Hmm, I don't understand what you need help with {author}. Try rephrasing the question and/or including more keywords.",
+  "words": {
+    "help": {
+      "weight": 1
+    },
+    "where": {
+      "weight": 1
+    },
+    "find": {
+      "weight": 1
+    },
+    "info": {
+      "weight": 1
+    },
+    "link": {
+      "weight": 1
+    }
+  },
+  "requiredweight": 1
+}
