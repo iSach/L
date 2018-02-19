@@ -2,17 +2,22 @@
   "name": "Treasure Chests",
   "description": "Helps direct the user to Treasure Chest information",
   "response": "Hi {author}! Information about Treasure Chests can be found at https://bit.ly/UCTChests !",
-  "words": {
-    "treasure": {
+  "words": [
+    {
+      "id": "treasure",
       "weight": 3
     },
-    "chest": {
+    {
+      "id": "chest",
       "weight": 1
     },
-    "reward": {
+    {
+      "id": "reward",
       "weight": 1
     }
-  },
+  ],
   "requiredweight": 4,
-  "inherit": [ "HelpWords" ]
+  "inherit": [
+    "HelpWords"
+  ]
 }

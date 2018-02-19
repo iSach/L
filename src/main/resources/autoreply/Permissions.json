@@ -2,14 +2,18 @@
   "name": "Permissions",
   "description": "Helps direct the user the permission list",
   "response": "Hi {author}! You can find permissions at https://bit.ly/PermsUC !",
-  "words": {
-    "perm": {
+  "words": [
+    {
+      "id": "perm",
       "weight": 3
     },
-    "list": {
+    {
+      "id": "list",
       "weight": 1
     }
-  },
+  ],
   "requiredweight": 4,
-  "inherit": [ "HelpWords" ]
+  "inherit": [
+    "HelpWords"
+  ]
 }

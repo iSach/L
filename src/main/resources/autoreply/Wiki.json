@@ -2,14 +2,18 @@
   "name": "Wiki",
   "description": "Helps direct the user to the wiki",
   "response": "Hi {author}! You can find the wiki at https://github.com/iSach/UltraCosmetics/wiki !",
-  "words": {
-    "wiki": {
+  "words": [
+    {
+      "id": "wiki",
       "weight": 3
     },
-    "guide": {
+    {
+      "id": "guide",
       "weight": 3
     }
-  },
+  ],
   "requiredweight": 4,
-  "inherit": [ "HelpWords" ]
+  "inherit": [
+    "HelpWords"
+  ]
 }
