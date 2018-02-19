@@ -4,11 +4,11 @@
   "response": "Hi {author}! You can find the wiki at https://github.com/iSach/UltraCosmetics/wiki !",
   "words": [
     {
-      "id": "wiki",
+      "word": "wiki",
       "weight": 3
     },
     {
-      "id": "guide",
+      "word": "guide",
       "weight": 3
     }
   ],

@@ -4,7 +4,7 @@
   "response": "Hi {author}! You can find the command list at https://github.com/iSach/UltraCosmetics/wiki/Commands !",
   "words": [
     {
-      "id": "command",
+      "word": "command",
       "weight": 3
     }
   ],

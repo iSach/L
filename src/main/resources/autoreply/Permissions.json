@@ -4,11 +4,11 @@
   "response": "Hi {author}! You can find permissions at https://bit.ly/PermsUC !",
   "words": [
     {
-      "id": "perm",
+      "word": "perm",
       "weight": 3
     },
     {
-      "id": "list",
+      "word": "list",
       "weight": 1
     }
   ],
