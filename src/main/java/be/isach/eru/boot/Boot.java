@@ -14,14 +14,17 @@ public class Boot {
         try {
             AdvancedJSONObject object = new AdvancedJSONObject(new String(Files.readAllBytes(FilePaths.TOKEN)));
             object.addDefault("token", "");
+            object.addDefault("detectlanguage-token", "");
             Files.write(FilePaths.TOKEN, object.toString(4).getBytes());
             String token = object.getString("token");
+            String langToken = object.getString("detectlanguage-token");
             
-            new Eru(token);
+            new Eru(token, langToken);
         } catch (IOException e) {
             System.out.println("Generating token.json please insert a token");
             JSONObject object = new JSONObject();
             object.put("token", "INSERT BOT TOKEN HERE");
+            object.put("detectlanguage-token", "INSERT DETECTLANGUAGE TOKEN HERE");
             try {
                 Files.write(FilePaths.TOKEN, object.toString(4).getBytes());
             } catch (IOException e1) {

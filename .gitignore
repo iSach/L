@@ -121,3 +121,8 @@ token.json
 .idea
 
 .idea/*
+
+autoreply
+eru-bot.iml
+src/test/
+runenvironment/

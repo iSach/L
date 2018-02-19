@@ -15,6 +15,7 @@ repositories {
 dependencies {
     compile 'net.dv8tion:JDA:3.5.1_339'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
+    compile 'com.detectlanguage:detectlanguage:1.0.6'
 }
 
 task fatJar(type: Jar) {

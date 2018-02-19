@@ -6,15 +6,20 @@ import com.google.gson.Gson;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.dv8tion.jda.core.requests.RestAction;
+import sun.misc.ClassLoaderUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AutoReplyModule extends ListenerAdapter implements Module {
+
 	private List<AutoReplyData> autoReplyData;
 	
 	public AutoReplyModule() {
@@ -24,8 +29,8 @@ public class AutoReplyModule extends ListenerAdapter implements Module {
 	@Override
 	public void enable() {
 		Gson gson = new Gson();
-		File[] autoreplyFiles = FilePaths.AUTOREPLY.toFile().listFiles();
-		if (autoreplyFiles != null) {
+        File[] autoreplyFiles = FilePaths.AUTOREPLY.toFile().listFiles();
+        if (autoreplyFiles != null) {
 			for (File file : autoreplyFiles) {
 				try {
 					StringBuilder lines = new StringBuilder();
@@ -60,7 +65,7 @@ public class AutoReplyModule extends ListenerAdapter implements Module {
 			return;
 		}
 		
-		String message = event.getMessage().getContentDisplay();
+		String message = event.getMessage().getContentDisplay().toLowerCase();
 		AutoReplyData responseToGive = null;
 		int weight = 0;
 		
@@ -83,8 +88,8 @@ public class AutoReplyModule extends ListenerAdapter implements Module {
 					}
 				}
 			}
-			
-			if (weight >= data.requiredweight) {
+
+            if (weight >= data.requiredweight) {
 				if (responseToGive != null) {
 					if (weight > responseToGive.requiredweight) {
 						responseToGive = data;
