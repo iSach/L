@@ -18,11 +18,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class LanguageModule extends ListenerAdapter implements Module {
 
     private Eru eru;
+
+    private static final ScheduledThreadPoolExecutor EXECUTOR = new ScheduledThreadPoolExecutor(4);
 
     Map<String, List<String>> allowed;
 
@@ -114,8 +118,14 @@ public class LanguageModule extends ListenerAdapter implements Module {
             }
             System.out.println("[" + r.language + "] -> " + content);
             if(!allowed.get(message.getChannel().getId()).contains(r.language)) {
+                eru.getLoggingModule().log("__**Deleted Message:**__\n" +
+                        "__**Written in:**__ `" + r.language + "`\n" +
+                        "__**In Channel:**__ `" + message.getChannel().getName() + "`\n" +
+                        "__**Message content:**__\n" +
+                        "`" + message.getContentDisplay() + "`\n" +
+                        "__**By:**__ " + message.getAuthor().getAsMention());
                 System.out.println("Wrong language detected, deleting...");
-                tryPrivateMessage(message, r.language);
+                sendWarning(message, r.language);
                 message.delete().queue();
                 return false;
             }
@@ -178,10 +188,9 @@ public class LanguageModule extends ListenerAdapter implements Module {
         return sb.toString();
     }
 
-    private void tryPrivateMessage(Message message, String language) {
-        User user = message.getAuthor();
-        user.openPrivateChannel().queue(privateChannel -> {
-            privateChannel.sendMessage("Hello! It seems you were trying to send a message in language: " + language + " in the channel: " + message.getChannel().getName() + "!\nPlease send it in the correct channel. This feature is still in Bêta, please send your message content to @sach#5092 if you think this was an error!\nThanks").queue();
+    private void sendWarning(Message message, String language) {
+        message.getTextChannel().sendMessage("Hello " + message.getAuthor().getAsMention() +"! It seems you were trying to send a message in language: " + language + " in the channel: " + message.getChannel().getName() + "!\nPlease send it in the correct channel. This feature is still in Bêta, please send your message content to " + eru.getJda().getUserById("93721838093352960").getAsMention() + " if you think this was an error!\nThanks").queue(success -> {
+          EXECUTOR.schedule(() -> success.delete().queue(), 10, TimeUnit.SECONDS);
         });
     }
 }

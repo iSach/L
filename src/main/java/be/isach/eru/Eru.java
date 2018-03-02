@@ -3,6 +3,7 @@ package be.isach.eru;
 import be.isach.eru.module.Module;
 import be.isach.eru.module.autoreply.AutoReplyModule;
 import be.isach.eru.module.lang.LanguageModule;
+import be.isach.eru.module.log.LoggingModule;
 import be.isach.eru.runtime.ShutdownThread;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Eru {
+
+    private LoggingModule loggingModule;
 
     /* TODO
 
@@ -43,9 +46,11 @@ public class Eru {
 
         AutoReplyModule autoReplyModule = new AutoReplyModule();
         LanguageModule languageModule = new LanguageModule(this);
+        loggingModule = new LoggingModule(this);
 
         modules.add(autoReplyModule);
         modules.add(languageModule);
+        modules.add(loggingModule);
 
         modules.forEach(module -> jda.addEventListener((ListenerAdapter)module));
         modules.forEach(Module::enable);
@@ -56,7 +61,15 @@ public class Eru {
         jda.shutdownNow();
     }
 
+    public JDA getJda() {
+        return jda;
+    }
+
     public String getLangToken() {
         return langToken;
+    }
+
+    public LoggingModule getLoggingModule() {
+        return loggingModule;
     }
 }
